@@ -363,11 +363,16 @@ begin
     vViews :=  TacFilterController(
                   Application.MainForm.FindComponent('FFilterDepot')
                     ).findFilter(PClassName);
-{    if (manager<>nil) AND (UpperCase(manager.currentResource.FilterDefName)=UpperCase(PClassName)) then
-      vViews := manager.currentResource.views
-    else
-      vViews := FClientDS.DataRequest('_CMD=GET_VIEWS UID=  CLASSNAME=' + PClassName);}
+    if VarIsEmpty(vViews) then
+    begin
+      //if (manager<>nil) AND (UpperCase(manager.currentResource.FilterDefName)=UpperCase(PClassName)) then
+      //  vViews := manager.currentResource.views
+      //else
+        vViews := FClientDS.DataRequest('_CMD=GET_VIEWS UID=  CLASSNAME=' + PClassName);
+      TacFilterController(Application.MainForm.FindComponent('FFilterDepot')).
+        addFilter(PClassName, vViews);
     //FClientDS.ProviderName
+    end;
     if ViewDefault <> 0 then
       iViewDefault := ViewDefault
     else
