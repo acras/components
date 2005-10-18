@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="B305_r61.bpl"/>
+    <OBJFILES value="B305_r61.obj ..\source\Abarctyp.obj ..\source\AbBase.obj 
+      ..\source\AbBitBkt.obj ..\source\AbBrowse.obj ..\source\AbCabExt.obj 
+      ..\source\AbCabKit.obj ..\source\AbCabMak.obj ..\source\Abcabtyp.obj 
+      ..\source\AbCBrows.obj ..\source\Abconst.obj ..\source\AbExcept.obj 
+      ..\source\AbFciFdi.obj ..\source\AbSelfEx.obj ..\source\Abunzper.obj 
+      ..\source\AbUnzPrc.obj ..\source\Abutils.obj ..\source\AbVMStrm.obj 
+      ..\source\AbZBrows.obj ..\source\Abzipext.obj ..\source\Abzipkit.obj 
+      ..\source\Abzipper.obj ..\source\AbZipPrc.obj ..\source\Abziptyp.obj 
+      ..\source\AbDfXlat.obj ..\source\AbDfCryS.obj ..\source\AbDfDec.obj 
+      ..\source\AbDfEnc.obj ..\source\AbDfHufD.obj ..\source\AbDfInW.obj 
+      ..\source\AbDfOutW.obj ..\source\AbDfPkMg.obj ..\source\AbDfStrm.obj 
+      ..\source\AbDfBase.obj ..\source\AbGzTyp.obj ..\source\AbTarTyp.obj 
+      ..\source\AbSWStm.obj ..\source\AbSpanSt.obj ..\source\AbZipCry.obj 
+      ..\source\AbZLTyp.obj"/>
+    <RESFILES value="B305_r61.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES)"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="rtl.lib"/>
+    <PACKAGES value="rtl.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value=""/>
+    <SYSDEFINES value="NO_STRICT;_VIS_NOLIB;USEPACKAGES"/>
+    <MAINSOURCE value="B305_r61.cpp"/>
+    <INCLUDEPATH value="..\source;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\source;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par -w-8027 -w-8026"/>
+    <WARNOPTSTR value=""/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\source -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -boa"/>
+    <CFLAG1 value="-O2 -Vx -Ve -Tkh30000 -X- -a8 -b- -k- -vi -c -tWM"/>
+    <PFLAGS value="-$YD -$L- -$D- -$A8 -v -M -JPHNE"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-D&quot;TurboPower Abbrevia 3.05 Run-time package - RTL61&quot; -aa -Tpp -Gpr -x -Gn 
+      -Gl -Gi -w"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0pkg32.obj $(PACKAGES) sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="B305_r61.cpp" FORMNAME="" UNITNAME="B305_r61" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="B305_r61.res" FORMNAME="" UNITNAME="B305_r61.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\Abarctyp.pas" FORMNAME="" UNITNAME="..\source\Abarctyp" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbBase.pas" FORMNAME="" UNITNAME="..\source\AbBase" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbBitBkt.pas" FORMNAME="" UNITNAME="..\source\AbBitBkt" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbBrowse.pas" FORMNAME="" UNITNAME="..\source\AbBrowse" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbCabExt.pas" FORMNAME="" UNITNAME="..\source\AbCabExt" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbCabKit.pas" FORMNAME="" UNITNAME="..\source\AbCabKit" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbCabMak.pas" FORMNAME="" UNITNAME="..\source\AbCabMak" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\Abcabtyp.pas" FORMNAME="" UNITNAME="..\source\Abcabtyp" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbCBrows.pas" FORMNAME="" UNITNAME="..\source\AbCBrows" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\Abconst.pas" FORMNAME="" UNITNAME="..\source\Abconst" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbExcept.pas" FORMNAME="" UNITNAME="..\source\AbExcept" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbFciFdi.pas" FORMNAME="" UNITNAME="..\source\AbFciFdi" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbSelfEx.pas" FORMNAME="" UNITNAME="..\source\AbSelfEx" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\Abunzper.pas" FORMNAME="" UNITNAME="..\source\Abunzper" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbUnzPrc.pas" FORMNAME="" UNITNAME="..\source\AbUnzPrc" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\Abutils.pas" FORMNAME="" UNITNAME="..\source\Abutils" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbVMStrm.PAS" FORMNAME="" UNITNAME="..\source\AbVMStrm" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbZBrows.pas" FORMNAME="" UNITNAME="..\source\AbZBrows" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\Abzipext.pas" FORMNAME="" UNITNAME="..\source\Abzipext" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\Abzipkit.pas" FORMNAME="" UNITNAME="..\source\Abzipkit" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\Abzipper.pas" FORMNAME="" UNITNAME="..\source\Abzipper" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbZipPrc.pas" FORMNAME="" UNITNAME="..\source\AbZipPrc" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\Abziptyp.pas" FORMNAME="" UNITNAME="..\source\Abziptyp" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="rtl.bpi" FORMNAME="" UNITNAME="rtl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbDfXlat.pas" FORMNAME="" UNITNAME="..\source\AbDfXlat" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbDfCryS.pas" FORMNAME="" UNITNAME="..\source\AbDfCryS" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbDfDec.pas" FORMNAME="" UNITNAME="..\source\AbDfDec" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbDfEnc.pas" FORMNAME="" UNITNAME="..\source\AbDfEnc" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbDfHufD.pas" FORMNAME="" UNITNAME="..\source\AbDfHufD" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbDfInW.pas" FORMNAME="" UNITNAME="..\source\AbDfInW" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbDfOutW.pas" FORMNAME="" UNITNAME="..\source\AbDfOutW" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbDfPkMg.pas" FORMNAME="" UNITNAME="..\source\AbDfPkMg" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbDfStrm.pas" FORMNAME="" UNITNAME="..\source\AbDfStrm" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbDfBase.pas" FORMNAME="" UNITNAME="..\source\AbDfBase" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbGzTyp.pas" FORMNAME="" UNITNAME="..\source\AbGzTyp" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbTarTyp.pas" FORMNAME="" UNITNAME="..\source\AbTarTyp" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbSWStm.pas" FORMNAME="" UNITNAME="..\source\AbSWStm" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbSpanSt.pas" FORMNAME="" UNITNAME="..\source\AbSpanSt" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbZipCry.pas" FORMNAME="" UNITNAME="..\source\AbZipCry" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbZLTyp.pas" FORMNAME="" UNITNAME="..\source\AbZLTyp" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=3
+MinorVer=0
+Release=4
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=TurboPower Software
+FileDescription=Abbrevia Components
+FileVersion=3.0.4.0
+InternalName=
+LegalCopyright=Copyright (c) TurboPower Software Co 1997, 2002
+LegalTrademarks=
+OriginalFilename=
+ProductName=Abbrevia
+ProductVersion=3.05
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=3
+Item0=..\source;$(BCB)\include;$(BCB)\include\vcl
+Item1=$(BCB)\include;$(BCB)\include\vcl
+Item2=$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=5
+Item0=..\source;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item1=$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item2=$(BCB)\lib\obj;$(BCB)\lib
+Item3=$(BCB)\lib\obj;$(BCB)\lib
+Item4=;;;;;;;;;;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=2
+Item0=USEPACKAGES
+Item1=_RTLDLL;USEPACKAGES
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=C:\Abbrevia\
+Item1=C:\Abbrevia
+
+[HistoryLists\hIBPIOutputDir]
+Count=1
+Item0=C:\Abbrevia
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Linker]
+LibPrefix=
+LibSuffix=
+LibVersion=
+  </IDEOPTIONS>
+</PROJECT>

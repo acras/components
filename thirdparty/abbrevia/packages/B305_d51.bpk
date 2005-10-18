@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.05.03"/>
+    <PROJECT value="B305_d51.bpl"/>
+    <OBJFILES value="..\source\AbPeCol.obj ..\source\Abpever.obj ..\source\AbRegVcl.obj 
+      ..\source\AbPeDir.obj ..\source\AbPeFn.obj ..\source\AbPePass.obj 
+      B305_d51.obj"/>
+    <RESFILES value="B305_d51.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) ..\source\AbPeCol.dfm ..\source\Abpever.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="Vcl50.lib"/>
+    <PACKAGES value="vcl50.bpi vclx50.bpi B305_r51.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;..\source"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="tlink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="_RTLDLL;NO_STRICT;USEPACKAGES"/>
+    <MAINSOURCE value="B305_d51.cpp"/>
+    <INCLUDEPATH value="..\source;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Source\ToolsAPI"/>
+    <LIBPATH value="$(BCB)\Projects\Lib;..\source;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\Source\ToolsAPI"/>
+    <WARNINGS value="-w-par"/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\source -I$(BCB)\include -I$(BCB)\include\vcl -I$(BCB)\Source\ToolsAPI 
+      -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl50.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tWM"/>
+    <PFLAGS value="-$YD -$W -$O- -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-D&quot;TurboPower Abbrevia 3.05 Design-time package - VCL51&quot; -aa -Tpp -Gpd -x 
+      -Gn -Gl -Gi -v"/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0pkg32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+  </LINKER>
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=3
+MinorVer=0
+Release=4
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=TurboPower Software
+FileDescription=Abbrevia Components
+FileVersion=3.0.4.0
+InternalName=
+LegalCopyright=Copyright (c) TurboPower Software Co 1997, 2002
+LegalTrademarks=
+OriginalFilename=
+ProductName=Abbrevia
+ProductVersion=3.05
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=4
+Item0=..\source;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Source\ToolsAPI
+Item1=$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Source\ToolsAPI
+Item2=$(BCB)\include;$(BCB)\include\vcl;$(BCB)\CBuilder5\Source\ToolsAPI
+Item3=$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=7
+Item0=$(BCB)\Projects\Lib;..\source;;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\Source\ToolsAPI
+Item1=;;;;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\Source\ToolsAPI
+Item2=$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\Source\ToolsAPI
+Item3=;;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\Source\ToolsAPI
+Item4=;;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\CBuilder5\Source\ToolsAPI
+Item5=$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\CBuilder5\Source\ToolsAPI
+Item6=;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

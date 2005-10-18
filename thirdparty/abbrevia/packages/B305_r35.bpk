@@ -1,0 +1,217 @@
+# * ***** BEGIN LICENSE BLOCK *****
+# * Version: MPL 1.1
+# *
+# * The contents of this file are subject to the Mozilla Public License Version
+# * 1.1 (the "License"); you may not use this file except in compliance with
+# * the License. You may obtain a copy of the License at
+# * http://www.mozilla.org/MPL/
+# *
+# * Software distributed under the License is distributed on an "..\source\AS IS" basis,
+# * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+# * for the specific language governing rights and limitations under the
+# * License.
+# *
+# * The Original Code is TurboPower Abbrevia
+# *
+# * The Initial Developer of the Original Code is
+# * TurboPower Software
+# *
+# * Portions created by the Initial Developer are Copyright (C) 1997-2002
+# * the Initial Developer. All Rights Reserved.
+# *
+# * Contributor(s):
+# *
+# * ***** END LICENSE BLOCK ***** 
+
+# ---------------------------------------------------------------------------
+!if !$d(BCB)
+BCB = $(MAKEDIR)\..
+!endif
+
+# ---------------------------------------------------------------------------
+# IDE SECTION
+# ---------------------------------------------------------------------------
+# The following section of the project makefile is managed by the BCB IDE.
+# It is recommended to use the IDE to change any of the values in this
+# section.
+# ---------------------------------------------------------------------------
+
+VERSION = BCB.03
+# ---------------------------------------------------------------------------
+PROJECT = B305_r35.bpl
+OBJFILES = ..\source\Abarctyp.obj ..\source\AbBase.obj ..\source\AbBitBkt.obj \
+  ..\source\AbBrowse.obj ..\source\AbCabExt.obj ..\source\AbCabKit.obj \
+  ..\source\AbCabMak.obj ..\source\Abcabtyp.obj ..\source\AbCBrows.obj \
+  ..\source\Abconst.obj ..\source\AbCView.obj ..\source\Abdlgdir.obj \
+  ..\source\Abdlgpwd.obj ..\source\AbExcept.obj ..\source\AbFciFdi.obj \
+  ..\source\AbMeter.obj ..\source\AbSelfEx.obj ..\source\Abunzper.obj \
+  ..\source\AbUnzPrc.obj ..\source\Abutils.obj ..\source\Abview.obj \
+  ..\source\AbVMStrm.obj ..\source\AbZBrows.obj ..\source\Abzipext.obj \
+  ..\source\Abzipkit.obj ..\source\AbZipOut.obj ..\source\Abzipper.obj \
+  ..\source\AbZipPrc.obj ..\source\Abziptyp.obj ..\source\AbZView.obj B305_r35.obj
+RESFILES = B305_r35.res
+DEFFILE =
+RESDEPEN = $(RESFILES) ..\source\Abdlgdir.dfm ..\source\Abdlgpwd.dfm
+LIBFILES =
+LIBRARIES =
+SPARELIBS = VCL35.lib vclx35.lib
+PACKAGES = vclx35.bpi VCL35.bpi
+# ---------------------------------------------------------------------------
+PATHCPP = .;
+PATHASM = .;..\source
+PATHPAS = .;
+PATHRC = .;
+DEBUGLIBPATH = $(BCB)\lib\debug
+RELEASELIBPATH = $(BCB)\lib\release
+# ---------------------------------------------------------------------------
+CFLAG1 = -O2 -w -Ve -k- -vi -c -b- -w-par -w-inl -Vx
+CFLAG2 = -DUSEPACKAGES -I..\source;$(BCB)\include;$(BCB)\include\vcl
+CFLAG3 = -Tkh30000
+PFLAGS = -DUSEPACKAGES -U..\source;$(BCB)\lib\obj;$(BCB)\lib;$(RELEASELIBPATH) \
+  -I..\source;$(BCB)\include;$(BCB)\include\vcl -$L- -$D- -v -JPHN -M
+RFLAGS = -DUSEPACKAGES -i..\source;$(BCB)\include;$(BCB)\include\vcl
+AFLAGS = /i..\source /i$(BCB)\include /i$(BCB)\include\vcl /dUSEPACKAGES /mx /w2 /zn
+LFLAGS = -L..\source;$(BCB)\lib\obj;$(BCB)\lib;$(RELEASELIBPATH) \
+  -D"TurboPower Abbrevia 3.05 Run-time package - VCL35" -aa -Tpp -Gpr -x -Gn -Gl \
+  -Gi -w
+IFLAGS =
+# ---------------------------------------------------------------------------
+ALLOBJ = c0pkg32.obj $(PACKAGES) sysinit.obj $(OBJFILES)
+ALLRES = $(RESFILES)
+ALLLIB = $(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib
+# ---------------------------------------------------------------------------
+!ifdef IDEOPTIONS
+
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=3
+MinorVer=0
+Release=4
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=TurboPower Software
+FileDescription=Abbrevia Components
+FileVersion=3.0.4.0
+InternalName=
+LegalCopyright=Copyright (c) TurboPower Software Co 1997, 2002
+LegalTrademarks=
+OriginalFilename=
+ProductName=Abbrevia
+ProductVersion=3.05
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=4
+Item0=..\source;$(BCB)\include;$(BCB)\include\vcl
+Item1=$(BCB)\include;$(BCB)\include\vcl
+Item2=..\abbrevia;$(BCB)\include;$(BCB)\include\vcl
+Item3=..\abbrevia2;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=4
+Item0=..\source;$(BCB)\lib\obj;$(BCB)\lib
+Item1=$(BCB)\lib\obj;$(BCB)\lib
+Item2=..\abbrevia;$(BCB)\lib\obj;$(BCB)\lib
+Item3=..\abbrevia2;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=2
+Item0=USEPACKAGES
+Item1=_RTLDLL;USEPACKAGES
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+HostApplication=
+
+!endif
+
+# ---------------------------------------------------------------------------
+# MAKE SECTION
+# ---------------------------------------------------------------------------
+# This section of the project file is not used by the BCB IDE.  It is for
+# the benefit of building from the command-line using the MAKE utility.
+# ---------------------------------------------------------------------------
+
+.autodepend
+# ---------------------------------------------------------------------------
+!if !$d(BCC32)
+BCC32 = bcc32
+!endif
+
+!if !$d(DCC32)
+DCC32 = dcc32
+!endif
+
+!if !$d(TASM32)
+TASM32 = tasm32
+!endif
+
+!if !$d(LINKER)
+LINKER = ilink32
+!endif
+
+!if !$d(BRCC32)
+BRCC32 = brcc32
+!endif
+# ---------------------------------------------------------------------------
+!if $d(PATHCPP)
+.PATH.CPP = $(PATHCPP)
+.PATH.C   = $(PATHCPP)
+!endif
+
+!if $d(PATHPAS)
+.PATH.PAS = $(PATHPAS)
+!endif
+
+!if $d(PATHASM)
+.PATH.ASM = $(PATHASM)
+!endif
+
+!if $d(PATHRC)
+.PATH.RC  = $(PATHRC)
+!endif
+# ---------------------------------------------------------------------------
+$(PROJECT): $(OBJFILES) $(RESDEPEN) $(DEFFILE)
+    $(BCB)\BIN\$(LINKER) @&&!
+    $(LFLAGS) +
+    $(ALLOBJ), +
+    $(PROJECT),, +
+    $(ALLLIB), +
+    $(DEFFILE), +
+    $(ALLRES)
+!
+# ---------------------------------------------------------------------------
+.pas.hpp:
+    $(BCB)\BIN\$(DCC32) $(PFLAGS) {$< }
+
+.pas.obj:
+    $(BCB)\BIN\$(DCC32) $(PFLAGS) {$< }
+
+.cpp.obj:
+    $(BCB)\BIN\$(BCC32) $(CFLAG1) $(CFLAG2) $(CFLAG3) -n$(@D) {$< }
+
+.c.obj:
+    $(BCB)\BIN\$(BCC32) $(CFLAG1) $(CFLAG2) $(CFLAG3) -n$(@D) {$< }
+
+.asm.obj:
+    $(BCB)\BIN\$(TASM32) $(AFLAGS) $<, $@
+
+.rc.res:
+    $(BCB)\BIN\$(BRCC32) $(RFLAGS) -fo$@ $<
+# ---------------------------------------------------------------------------
