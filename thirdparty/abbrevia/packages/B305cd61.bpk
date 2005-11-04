@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="B305cd61.bpl"/>
+    <OBJFILES value="B305cd61.obj ..\source\AbRegClx.obj ..\source\AbQPeCol.obj 
+      ..\source\AbQPeVer.obj ..\source\AbQDgPwd.obj ..\source\AbQPeDir.obj 
+      ..\source\AbQPeFn.obj ..\source\AbQPePas.obj ..\source\AbQDgDir.obj"/>
+    <RESFILES value="B305cd61.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) ..\source\AbQPeCol.dfm ..\source\AbQPeVer.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="rtl.lib"/>
+    <PACKAGES value="designide.bpi designdgm.bpi B305cr61.bpi rtl.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="UsingCLX"/>
+    <SYSDEFINES value="NO_STRICT;_VIS_NOLIB;USEPACKAGES"/>
+    <MAINSOURCE value="B305cd61.cpp"/>
+    <INCLUDEPATH value="..\source;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Source\ToolsApi"/>
+    <LIBPATH value="..\source;$(BCB)\Projects\Bpl;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\Source\ToolsApi;C:\abbrevia"/>
+    <WARNINGS value="-w-par -w-8027 -w-8026"/>
+    <WARNOPTSTR value=""/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\source -I$(BCB)\include -I$(BCB)\include\vcl -I$(BCB)\Source\ToolsApi 
+      -src_suffix cpp -DUsingCLX -boa"/>
+    <CFLAG1 value="-O2 -Vx -Ve -Tkh30000 -X- -a8 -b- -k- -vi -c -tWM"/>
+    <PFLAGS value="-$YD -$L- -$D- -$A8 -v -M -JPHNE"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-D&quot;TurboPower Abbrevia 3.05 CLX Design-time package - CLX61&quot; -aa -Tpp -Gpd 
+      -x -Gn -Gl -Gi -w"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0pkg32.obj $(PACKAGES) sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="B305cd61.cpp" FORMNAME="" UNITNAME="B305cd61" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="B305cd61.res" FORMNAME="" UNITNAME="B305cd61.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="designide.bpi" FORMNAME="" UNITNAME="designide" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="designdgm.bpi" FORMNAME="" UNITNAME="designdgm" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="B305cr61.bpi" FORMNAME="" UNITNAME="B305cr61" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbRegClx.pas" FORMNAME="" UNITNAME="..\source\AbRegClx" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbQPeCol.pas" FORMNAME="..\source\AbColHeadingsEditor" UNITNAME="..\source\AbQPeCol" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbQPeVer.pas" FORMNAME="..\source\AbAboutBox" UNITNAME="..\source\AbQPeVer" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbQDgPwd.pas" FORMNAME="" UNITNAME="..\source\AbQDgPwd" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbQPeDir.pas" FORMNAME="" UNITNAME="..\source\AbQPeDir" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbQPeFn.pas" FORMNAME="" UNITNAME="..\source\AbQPeFn" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbQPePas.pas" FORMNAME="" UNITNAME="..\source\AbQPePas" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\AbQDgDir.pas" FORMNAME="" UNITNAME="..\source\AbQDgDir" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="rtl.bpi" FORMNAME="" UNITNAME="rtl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=3
+MinorVer=0
+Release=4
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=TurboPower Software
+FileDescription=Abbrevia Components
+FileVersion=3.0.4.0
+InternalName=
+LegalCopyright=Copyright (c) TurboPower Software Co 1997, 2002
+LegalTrademarks=
+OriginalFilename=
+ProductName=Abbrevia
+ProductVersion=3.05
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=7
+Item0=..\source;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Source\ToolsApi
+Item1=$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Source\ToolsApi
+Item2=D:\Program Files\Borland\BCB\CBuilder6\Source\Clx;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Source\ToolsApi;D:\Program Files\Borland\BCB\CBuilder6\Source\Vcl
+Item3=D:\Program Files\Borland\BCB\CBuilder6\Source\Clx;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Source\ToolsApi
+Item4=D:\Program Files\Borland\BCB\CBuilder6\Source\vcl;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Source\ToolsApi
+Item5=$(BCB)\include;$(BCB)\include\vcl
+Item6=..\Abbrevia2;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=13
+Item0=..\source;$(BCB)\Projects\Bpl;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\Source\ToolsApi;C:\abbrevia
+Item1=$(BCB)\Projects\Bpl;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\Source\ToolsApi;C:\abbrevia
+Item2=D:\Program Files\Borland\BCB\CBuilder6\Source\Clx;$(BCB)\Projects\Bpl;$(BCB)\Projects\Lib;C:\abbrevia;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\Source\ToolsApi;D:\Program Files\Borland\BCB\CBuilder6\Source\Vcl
+Item3=D:\Program Files\Borland\BCB\CBuilder6\Source\Clx;$(BCB)\Projects\Bpl;$(BCB)\Projects\Lib;C:\abbrevia;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\Source\ToolsApi
+Item4=D:\Program Files\Borland\BCB\CBuilder6\Source\vcl;$(BCB)\Projects\Bpl;$(BCB)\Projects\Lib;C:\abbrevia3;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\Source\ToolsApi
+Item5=$(BCB)\Projects\Lib;C:\abbrevia3;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\Source\ToolsApi
+Item6=$(BCB)\Projects\Lib;C:\abbrevia3;$(BCB)\lib\obj;$(BCB)\lib
+Item7=;;;;;;;;$(BCB)\Projects\Lib;C:\abbrevia3\;$(BCB)\lib\obj;$(BCB)\lib
+Item8=$(BCB)\Projects\Lib;C:\abbrevia3\;$(BCB)\lib\obj;$(BCB)\lib
+Item9=$(BCB)\Projects\Lib;;;..\abbrevia3;$(BCB)\lib\obj;$(BCB)\lib
+Item10=..\abbrevia3;$(BCB)\lib\obj;$(BCB)\lib
+Item11=$(BCB)\lib\obj;$(BCB)\lib
+Item12=..\abbrevia2;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=4
+Item0=UsingCLX
+Item1=_RTLDLL;USEPACKAGES;UsingCLX
+Item2=USEPACKAGES
+Item3=_RTLDLL;USEPACKAGES
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=C:\Abbrevia\
+Item1=C:\Abbrevia
+
+[HistoryLists\hIBPIOutputDir]
+Count=1
+Item0=C:\Abbrevia
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Linker]
+LibPrefix=
+LibSuffix=
+LibVersion=
+  </IDEOPTIONS>
+</PROJECT>

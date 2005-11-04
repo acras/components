@@ -1,0 +1,54 @@
+package osControls;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS OFF}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'OS Controls'}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl,
+  vclx,
+  dsnap,
+  vcldb,
+  bdertl,
+  ip4000v7,
+  dsnapcon,
+  rtl;
+
+contains
+  osUtils in 'osUtils.pas',
+  osAppResources in 'osAppResources.pas',
+  osClientDataset in 'osClientDataset.pas',
+  osComboFilter in 'osComboFilter.pas',
+  osDBDateTimePicker in 'osDBDateTimePicker.pas',
+  osExtStringList in 'osExtStringList.pas',
+  osFilterInspectorForm in 'osFilterInspectorForm.pas' {osFilterInspector},
+  osActionList in 'osActionList.pas',
+  osComboSearch in 'osComboSearch.pas',
+  osCustomSearchFrm in 'osCustomSearchFrm.pas' {CustomSearchForm},
+  osFilterInspectorFrame in 'osFilterInspectorFrame.pas' {FilterInspectorFrame: TFrame},
+  osRadioComboPanel in 'osRadioComboPanel.pas',
+  osCustomFilterUn in '..\..\..\clientes\FW\Forms\osCustomFilterUn.pas' {osCustomFilter},
+  osCustomFilterFunctionUn in '..\..\..\clientes\FW\Lib\osCustomFilterFunctionUn.pas';
+
+end.
