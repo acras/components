@@ -297,18 +297,9 @@ end;
 
 procedure TosComboSearch.Execute;
 begin
-  if FSearchDlg.Execute('', FAutoSearchNumber) then
-  begin
-    if Assigned(FOnReturnSearch) then
-      FOnReturnSearch(Self, FSearchDlg.FilterDataset);
-  end
-  else
-  begin
-    FReturnedValue := Integer(-1);
-    if Assigned(FOnCancelSearch) then
-      FOnCancelSearch(Self, FSearchDlg.FilterDataset);
-  end;
+  HandlerCustomDlg(self);
 end;
 
 
 end.
+
