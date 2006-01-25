@@ -30,6 +30,7 @@ requires
 
 contains
   acCollapsePanel in 'acCollapsePanel.pas',
-  acRadioComboPanel in 'acRadioComboPanel.pas';
+  acRadioComboPanel in 'acRadioComboPanel.pas',
+  acTrayIcon in 'acTrayIcon.pas';
 
 end.

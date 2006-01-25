@@ -223,7 +223,22 @@ begin
       CheckDS;
       FClientDS.CommandText := getSQLFilter(iIndex, PNewFilter);
       FClientDS.DisableControls;
-      FClientDS.Open;
+      try
+        FClientDS.Open;
+      except
+        on e: exception do
+        begin
+          if ItemIndex<>0 then
+            MessageDlg('Ocorreram erros na execução do Filtro. '+#13+#10'O filtro padrão será executado novamente.'+#13+#10+'Erro com a mensagem:'+e.Message, mtError, [mbOK], 0)
+          else
+            MessageDlg('Ocorreram erros na execução do Filtro.'+#13+#10+'Erro com a mensagem:'+e.Message, mtError, [mbOK], 0);
+          if ItemIndex<>0 then
+          begin
+            ItemIndex := 0;
+            ExecuteFilter(true);
+          end;
+        end;
+      end;
       ConfigFields(iIndex);
       FClientDS.EnableControls;
     except
