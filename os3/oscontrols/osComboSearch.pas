@@ -263,6 +263,19 @@ begin
   inherited;
 end;
 
+{-------------------------------------------------------------------------
+ Objetivo   > Enviar parâmetros para a pesquisa no filtro
+ Parâmetros > Conforme documentação
+ Retorno    >
+ Criação    >
+ Observações> Nunca pode ser chamada diretamente pelo código
+ Atualização> 08/02/2005 Ricardo N. Acras
+                  Alteração na busca do parâmetro. Trocado paramByName por
+                    findParam. ParamByName da erro caso o parâmetro não
+                    exista. Acontece que o SendFilterDefParams é disparado
+                    em alguns momentos em que os parâmetros ainda não
+                    foram criados.
+ ------------------------------------------------------------------------}
 procedure TosComboSearch.SendFilterDefParams;
 var
   i: integer;
@@ -272,13 +285,13 @@ begin
   if FFilterDefParams.Count > 0 then
   begin
     if (TwwDBComboDlg(self).DataSource = nil)
-           OR (TwwDBComboDlg(self).DataSource.DataSet <> nil) then
-      raise Exception.Create('Impossível mandar parâmetros sem um DataSet atribuído.');        
+           OR (TwwDBComboDlg(self).DataSource.DataSet = nil) then
+      raise Exception.Create('Impossível mandar parâmetros sem um DataSet atribuído.');
 
     Dataset := TwwDBComboDlg(Self).DataSource.Dataset;
     for i:=0 to FFilterDefParams.Count-1 do
     begin
-      Param := FSearchDlg.ConsultaCombo.Params.ParamByName(FFilterDefParams[i]);
+      Param := FSearchDlg.ConsultaCombo.Params.FindParam(FFilterDefParams[i]);
       if Assigned(Param) then
         Param.Value := Dataset.FieldByName(FFilterDefParams[i]).Value;
     end;
