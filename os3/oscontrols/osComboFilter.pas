@@ -417,7 +417,15 @@ begin
   inherited;
 end;
 
-
+{--------------------------------------------------------------------------
+ Objetivo   >
+ Observações>
+ Criação    >
+ Atualização> 10/02/2006 – Ricardo N. Acras
+              Alteração na forma de preencher os parâmetros. O preenchimento
+                normal utilizando assign simplesmente não funciona. Não entendo
+                o por que disso.
+--------------------------------------------------------------------------}
 function TosComboFilter.ExecuteView(PNumView, PConstraint: integer;
   PValue: string): boolean;
 var
@@ -426,13 +434,13 @@ var
   //slOrder: TStrings;
   sExpr: string;
   OldCursor: TCursor;
+  i: integer;
 begin
   OldCursor := Screen.Cursor;
   Screen.Cursor := crHourglass;
   Result := False;
   slQuery := TSQLStringList.Create;
   try
-    FClientDS.Close;
     if PNumView = -1 then
     begin
       // Repassa a query para o ClientDataset
@@ -444,7 +452,34 @@ begin
       begin
         sExpr := GetExpressionFromConstraint(slConstr[PConstraint], PValue);
         PrepareQuery(slQuery, sExpr, '', slExpr.Text);
-        FClientDS.CommandText := slQuery.Text;
+
+
+        FClientDS.Close;
+
+        //preencher os parâmetros
+        FParams.ParseSQL(slQuery.Text, True);
+        if FParams.Count > 0 then
+        begin
+          if Assigned(FGetParams) then
+            FGetParams(Self);
+          FClientDS.Params.Assign(FParams);
+        end
+        else
+          if FClientDS.Params.Count > 0 then
+            FClientDS.Params.Clear;
+
+
+
+        FClientDS.CommandText :=  slQuery.Text;
+        //preencher manualmente os parâmetros por que o preenchimento automático
+        //  não funciona.
+        for i := 0 to FParams.Count-1 do
+        begin
+          FClientDS.CommandText :=  StringReplace(FClientDS.CommandText, ':'+FParams[0].Name,
+            FParams[0].AsString,[]);
+        end;
+
+        FClientDS.Params.Clear;
         FClientDS.DisableControls;
         FClientDS.Open;
         FClientDS.EnableControls;
