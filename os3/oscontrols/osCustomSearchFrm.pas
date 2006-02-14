@@ -532,6 +532,7 @@ begin
       FLastOrder := GetOrder;
       PrepareQuery(slQuery, LastExpressions, FLastOrder, slExpr.Text);
       FParams.ParseSQL(slQuery.Text, True);
+      //
       FClientDS.Close;
       if FParams.Count > 0 then
       begin

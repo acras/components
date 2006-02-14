@@ -1,3 +1,13 @@
+{--------------------------------------------------------------------------
+ Objetivo   > Implementar o componente TosComboFilter que é o combo que vai
+                conter o filtro e todas as suas views
+ Observações>
+ Criação    >
+ Atualização> 13/02/2006 - Ricardo N. Acras
+                Adição do evendo onCustomGetExprList para dar a chance ao
+                  programador de adicionar expressões default via código
+--------------------------------------------------------------------------}
+
 unit osComboFilter;
 
 interface
@@ -8,6 +18,7 @@ uses
   osExtStringList, osUtils, dbclient, variants, db, osCustomFilterUn;
 
 type
+  TGetCustomExprListEvent = procedure(exprList: TStrings) of object;
   TViewDef = class(TObject)
   private
     FAttrList: TStrings;
@@ -34,6 +45,7 @@ type
     FViewDefault: integer;
     FItemIndexDefault: integer; // indica o item a ser selecionado quando iniciar um novo filtro
     customFilterForm: TosCustomFilter;
+    FonGetCustomExprList: TGetCustomExprListEvent;
     procedure SetClientDS(const Value: TClientDataset);
     function GetAttrList(PIndex: integer): TStrings;
     procedure SetUserID(const Value: string);
@@ -58,7 +70,7 @@ type
     function GetQueryText(PIndex: integer): TStrings;
     procedure GetViews(PUserID: string = ''; PClassName: string = '');
     procedure ClearViews;
-    procedure ExecuteFilter(PNewFilter: boolean = True);
+    function ExecuteFilter(PNewFilter: boolean = True): string;
     function ExecuteView(PNumView, PConstraint: integer; PValue: string): boolean;
     procedure ConfigFields(PIndex: integer);
     procedure ResetToItemDefault;
@@ -70,6 +82,7 @@ type
     property FilterDefName: string read FFilterDefName write SetFilterDefName;
     property ViewDefault: integer read FViewDefault write SetViewDefault;
     property GetParams: TNotifyEvent read FGetParams write FGetParams;
+    property onGetCustomExprList: TGetCustomExprListEvent read FonGetCustomExprList write FonGetCustomExprList;
   end;
 
 procedure Register;
@@ -188,7 +201,7 @@ begin
         begin
           nomeCustomFilterClass := trim(TViewDef(Items.Objects[iIndex]).queryText.text);
           customFilterForm := TosCustomFilterClass(OSGetClass(nomeCustomFilterClass)).create(self);
-          customFilterForm.execute(FBaseView.QueryText.gettext);
+          customFilterForm.execute(FBaseView.QueryText.gettext, GetExprList(iIndex));
         end;
         Result := customFilterForm.getQuery;
 
@@ -209,7 +222,7 @@ begin
   index := iIndex
 end;
 
-procedure TosComboFilter.ExecuteFilter(PNewFilter: boolean = True);
+function TosComboFilter.ExecuteFilter(PNewFilter: boolean = True): String;
 var
   OldCursor: TCursor;
   iIndex: integer;
@@ -222,6 +235,7 @@ begin
         raise Exception.Create('Não há filtros na lista');
       CheckDS;
       FClientDS.CommandText := getSQLFilter(iIndex, PNewFilter);
+      result := FClientDS.CommandText;
       FClientDS.DisableControls;
       try
         FClientDS.Open;
@@ -550,6 +564,17 @@ begin
   Text := '';
 end;
 
+{-------------------------------------------------------------------------
+ Objetivo   > Trazer a lista de expressões default
+ Parâmetros > PIndex: índice do filtro
+ Retorno    >
+ Criação    >
+ Observações>
+ Atualização> 13/02/2006 - Ricardo N. Acras
+                Alteração para chamar o evento onCustomExprList que, se
+                  atribuído da ao programador a chance de alterar
+                  programáticamente o ExprList.
+ ------------------------------------------------------------------------}
 function TosComboFilter.GetExprList(PIndex: integer): TStrings;
 var
   ViewSel, ViewInicial: TViewDef;
@@ -563,7 +588,11 @@ begin
     Result := ViewSel.ExprList
   else
     Result := ViewInicial.ExprList;
+
+  if Assigned(FonGetCustomExprList) then
+    FonGetCustomExprList(result);
 end;
+
 
 
 end.
