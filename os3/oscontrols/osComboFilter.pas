@@ -89,7 +89,7 @@ procedure Register;
 
 implementation
 
-uses osCustomFilterFunctionUn;
+uses osCustomFilterFunctionUn, osAppResources;
 
 procedure Register;
 begin
@@ -326,13 +326,24 @@ begin
     Result := ViewInicial.QueryText;
 end;
 
+{-------------------------------------------------------------------------
+ Objetivo   > 
+ Parâmetros > Conforme documentação
+ Retorno    >
+ Criação    >
+ Observações> Documentação iniciada em 25.04.2006 por Ricardo N. Acras
+ Atualização>
+ ------------------------------------------------------------------------}
 procedure TosComboFilter.GetViews(PUserID: string; PClassName: string);
 var
   vViews: variant;
   i, iMax, iViewDefault, iAux: integer;
   ViewDef: TViewDef;
   OldCursor: TCursor;
+  manager: TosAppResourceManager;
 begin
+  if Application.MainForm <> nil then
+    manager := TosAppResourceManager(Application.MainForm.FindComponent('Manager'));
   OldCursor := Screen.Cursor;
   Screen.Cursor := crHourglass;
   try
@@ -341,13 +352,17 @@ begin
     if PClassName = '' then
       PClassName := FFilterDefName;
     CheckDS;
-    vViews := FClientDS.DataRequest('_CMD=GET_VIEWS UID=  CLASSNAME=' + PClassName);
+    if (manager<>nil) AND (UpperCase(manager.currentResource.FilterDefName)=UpperCase(PClassName)) then
+      vViews := manager.currentResource.views
+    else
+      vViews := FClientDS.DataRequest('_CMD=GET_VIEWS UID=  CLASSNAME=' + PClassName);
     //FClientDS.ProviderName
     if ViewDefault <> 0 then
       iViewDefault := ViewDefault
     else
       iViewDefault := -1;
 
+    iMax := iAux;
     iAux := 0;
     iMax := VarArrayHighBound(vViews, 1);
     for i:=0 to iMax do

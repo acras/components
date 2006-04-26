@@ -31,7 +31,6 @@ requires
 contains
   acCollapsePanel in 'acCollapsePanel.pas',
   acRadioComboPanel in 'acRadioComboPanel.pas',
-  acTrayIcon in 'acTrayIcon.pas',
-  acNotifier in 'acNotifier.pas';
+  acTrayIcon in 'acTrayIcon.pas';
 
 end.

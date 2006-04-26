@@ -25,6 +25,7 @@ type
     FDataClass: TPersistentClass;
     FReportClassName: string;
     FReportClass: TPersistentClass;
+    FViews: variant;
     procedure SetImageIndex(const Value: integer);
   protected
     function GetDisplayName: string; override;
@@ -43,6 +44,7 @@ type
     property DomainName: string read FDomainName write FDomainName;
     property ImageIndex: integer read FImageIndex write SetImageIndex;
     property ResType: TResourceType read FResType write FResType;
+    property views: variant read FViews;
   end;
 
   { TosAppResourceCollection }
@@ -60,6 +62,7 @@ type
 
   TosAppResourceManager = class(TComponent)
   private
+    FCurrentResource: TosAppResource;
     FResources: TosAppResourceCollection;
     procedure SetResources(const Value: TosAppResourceCollection);
   public
@@ -74,7 +77,8 @@ type
     procedure Loaded; override;
     procedure AddResource(const PName, PDescription, PFilterDefName, PResClassName,
       PDataClassName, PReportClassName, PDomainName: string; PImageIndex: integer;
-      PResType: integer);
+      PResType: integer; PViews: variant);
+    property CurrentResource: TosAppResource read FCurrentResource write FCurrentResource;
   published
     property Resources: TosAppResourceCollection read FResources write SetResources;
   end;
@@ -128,7 +132,7 @@ end;
 
 procedure TosAppResourceManager.AddResource(const PName, PDescription,
   PFilterDefName, PResClassName, PDataClassName, PReportClassName,
-  PDomainName: string; PImageIndex, PResType: integer);
+  PDomainName: string; PImageIndex, PResType: integer; PViews: variant);
 begin
   with TosAppResource(FResources.Add) do
   begin
@@ -144,6 +148,7 @@ begin
       ResType          := rtOther
     else
       ResType          := TResourceType(PResType);
+    FViews := PViews;
   end;
 end;
 

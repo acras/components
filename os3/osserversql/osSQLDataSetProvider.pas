@@ -20,6 +20,7 @@ type
     property InternalDataset: TSQLDataset read GetInternalDataset;
     {** Implementa o método interno (DataRequest) GET_OIDHIGH }
     function GetIDHigh(const PSeqName: string = 'Geral'): OleVariant; override;
+
   published
     { Published declarations }
   end;

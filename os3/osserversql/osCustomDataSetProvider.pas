@@ -22,6 +22,7 @@ type
     function GetViews(const PUserID, PName: string): OleVariant;
     procedure DoBeforeGetRecords(Count: Integer; Options: Integer;
       const CommandText: WideString; var Params, OwnerData: OleVariant); override;
+    procedure DoGetTableName(DataSet: TDataSet; var TableName: string); override;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -181,6 +182,22 @@ begin
     BeforeOSGetRecords(Count, Options, CommandText, FParams, Params, OwnerData);
   end;
   inherited;
+end;
+
+{-------------------------------------------------------------------------
+ Objetivo   > Transformar o TableName em UpperCase por que no dialect 3
+                da erro por falta de case sensitivity.
+ Parâmetros > Conforme documentação
+ Retorno    >
+ Criação    > 23.03.2006 - Ricardo N. Acras
+ Observações>
+ Atualização>
+ ------------------------------------------------------------------------}
+procedure TosCustomDatasetProvider.DoGetTableName(DataSet: TDataSet;
+  var TableName: string);
+begin
+  inherited DoGetTableName(DataSet, TableName);
+  TableName := upperCase(TableName);
 end;
 
 end.
