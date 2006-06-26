@@ -77,7 +77,7 @@ type
     procedure Loaded; override;
     procedure AddResource(const PName, PDescription, PFilterDefName, PResClassName,
       PDataClassName, PReportClassName, PDomainName: string; PImageIndex: integer;
-      PResType: integer; PViews: variant);
+      PResType: integer);
     property CurrentResource: TosAppResource read FCurrentResource write FCurrentResource;
   published
     property Resources: TosAppResourceCollection read FResources write SetResources;
@@ -132,7 +132,7 @@ end;
 
 procedure TosAppResourceManager.AddResource(const PName, PDescription,
   PFilterDefName, PResClassName, PDataClassName, PReportClassName,
-  PDomainName: string; PImageIndex, PResType: integer; PViews: variant);
+  PDomainName: string; PImageIndex, PResType: integer);
 begin
   with TosAppResource(FResources.Add) do
   begin
@@ -148,7 +148,6 @@ begin
       ResType          := rtOther
     else
       ResType          := TResourceType(PResType);
-    FViews := PViews;
   end;
 end;
 

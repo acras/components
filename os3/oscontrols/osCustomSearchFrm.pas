@@ -1068,10 +1068,6 @@ begin
   if di=nil then
     exit;
   fills.clear;
-  for i := 0 to di.RowCount-1 do
-  begin
-//    fills.add(di.GetItemByRow(i).Caption);
-  end;
 end;
 
 

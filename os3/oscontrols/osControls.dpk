@@ -33,7 +33,9 @@ requires
   bdertl,
   ip4000v7,
   dsnapcon,
-  rtl;
+  rtl,
+  dbexpress,
+  osServer;
 
 contains
   osUtils in 'osUtils.pas',

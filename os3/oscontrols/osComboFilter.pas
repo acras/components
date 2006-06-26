@@ -15,7 +15,8 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, Mask, wwdbedit, Wwdotdot, Wwdbcomb, osFilterInspectorForm,
-  osExtStringList, osUtils, dbclient, variants, db, osCustomFilterUn;
+  osExtStringList, osUtils, dbclient, variants, db, osCustomFilterUn,
+  osSQLConnection, acFilterController;
 
 type
   TGetCustomExprListEvent = procedure(exprList: TStrings) of object;
@@ -51,6 +52,7 @@ type
     procedure SetUserID(const Value: string);
     procedure SetFilterDefName(const Value: string);
     procedure SetViewDefault(const Value: integer);
+    procedure SetSQLConnection(const Value: TosSQLConnection);
   protected
     function GetExpressionFromConstraint(const PConstraint, PValue: string): string;
   public
@@ -60,6 +62,7 @@ type
     FLastExpressions: string;
     FLastOrder: string;
     FClientDS: TClientDataset;
+    FSQLConnection: TosSQLConnection;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure CheckDS;
@@ -75,8 +78,11 @@ type
     procedure ConfigFields(PIndex: integer);
     procedure ResetToItemDefault;
     function getSQLFilter(var index: integer; PNewFilter: boolean = True): String;
+    function isDefCustomFilter(index: integer): boolean;
+    function defTemRestricaoUsuario(index: integer): boolean;
   published
     property ClientDS: TClientDataset read FClientDS write SetClientDS;
+    property SQLConnection: TosSQLConnection read FSQLConnection write SetSQLConnection;
     property Params: TParams read FParams write FParams;
     property UserID: string read FUserID write SetUserID;
     property FilterDefName: string read FFilterDefName write SetFilterDefName;
@@ -89,7 +95,7 @@ procedure Register;
 
 implementation
 
-uses osCustomFilterFunctionUn, osAppResources;
+uses osCustomFilterFunctionUn, osAppResources{, osCustomMainFrm};
 
 procedure Register;
 begin
@@ -193,7 +199,7 @@ begin
             if FClientDS.Params.Count > 0 then
               FClientDS.Params.Clear;
           Result := slQuery.Text;
-        end;
+        end;                                     
       end
       else
       begin
@@ -352,10 +358,15 @@ begin
     if PClassName = '' then
       PClassName := FFilterDefName;
     CheckDS;
-    if (manager<>nil) AND (UpperCase(manager.currentResource.FilterDefName)=UpperCase(PClassName)) then
+    //TTMCI
+
+    vViews :=  TacFilterController(
+                  Application.MainForm.FindComponent('FFilterDepot')
+                    ).findFilter(PClassName);
+{    if (manager<>nil) AND (UpperCase(manager.currentResource.FilterDefName)=UpperCase(PClassName)) then
       vViews := manager.currentResource.views
     else
-      vViews := FClientDS.DataRequest('_CMD=GET_VIEWS UID=  CLASSNAME=' + PClassName);
+      vViews := FClientDS.DataRequest('_CMD=GET_VIEWS UID=  CLASSNAME=' + PClassName);}
     //FClientDS.ProviderName
     if ViewDefault <> 0 then
       iViewDefault := ViewDefault
@@ -609,5 +620,39 @@ begin
 end;
 
 
+
+procedure TosComboFilter.SetSQLConnection(const Value: TosSQLConnection);
+begin
+  FSQLConnection := Value;
+end;
+
+{-------------------------------------------------------------------------
+ Objetivo   > Verificar se a definição de filtro é referente a uma classe
+                customizada 
+ Parâmetros > Conforme documentação
+ Retorno    >
+ Criação    > 20.06.2006 - Ricardo N. Acras
+ Observações>
+ Atualização>
+ ------------------------------------------------------------------------}
+function TosComboFilter.isDefCustomFilter(index: integer): boolean;
+begin
+  result :=
+    (trim(TViewDef(Items.Objects[index]).queryText.text) <> '') AND
+    (trim(TViewDef(Items.Objects[index]).queryText.text)[1] = 'T');
+end;
+
+{-------------------------------------------------------------------------
+ Objetivo   >
+ Parâmetros > Conforme documentação
+ Retorno    >
+ Criação    > 20.06.2006 - Ricardo N. Acras
+ Observações>
+ Atualização>
+ ------------------------------------------------------------------------}
+function TosComboFilter.defTemRestricaoUsuario(index: integer): boolean;
+begin
+  result := TViewDef(Items.Objects[index]).FConstrList.Count>0;
+end;
 
 end.
