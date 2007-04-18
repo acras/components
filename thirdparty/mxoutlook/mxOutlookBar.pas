@@ -2745,8 +2745,10 @@ Var
 Begin
      If ( Sender Is TScrollButton ) Then
      Begin
+        //ShowMessage('1.1');
           If ( Sender As TScrollButton ) = FScrollUp Then
           Begin
+          //ShowMessage('1.2');
                Dec( FFirstVisibleButton );
                If FFirstVisibleButton < 0 Then FFirstVisibleButton := 0;
                If Assigned( FOnScroll ) Then FOnScroll( Self );
@@ -2755,15 +2757,16 @@ Begin
           Else
                If ( Sender As TScrollButton ) = FScrollDown Then
                Begin
+            //             ShowMessage('1.3');
                     Inc( FFirstVisibleButton );
                     If FFirstVisibleButton > GetButtonCount - 1 Then
                          FFirstVisibleButton := GetButtonCount - 1;
                     If Assigned( FOnScroll ) Then FOnScroll( Self );
+              //                ShowMessage('1.4');
                     AutoSortButtons;
                End;
           Exit;
      End;
-
      If ( Sender Is THeaderSettings ) Then
      Begin
           CanApplyChanges := TRUE;
@@ -2820,7 +2823,6 @@ Begin
 
           AutoSortButtons;
      End;
-
      Realign;
      Invalidate;
 
@@ -4496,9 +4498,9 @@ Procedure TmxOutlookBar.DoSettingsChange( Sender: TObject );
 Var
      X: Integer;
      Header: TmxOutlookBarHeader;
+
 Begin
      If FCommonStyle Then Invalidate;
-
      If ( Sender Is THeaderSettings ) Then
      Begin
           If FCommonStyle Then
