@@ -49,6 +49,7 @@ type
     function GetFilterDataProvider: TCustomProvider;
     function getModified: Boolean;
   protected
+
     procedure Loaded; override;
     procedure KeyUp(var Key: Word; Shift: TShiftState); override;
     procedure SendFilterDefParams;
@@ -93,6 +94,7 @@ begin
   OnExit := HandlerExit;
   FAutoSearchNumber := 3;
   FFilterDefParams := TStringList.Create;
+  Modified := false;
 end;
 
 function TosComboSearch.GetFilterDataProvider: TCustomProvider;
@@ -112,14 +114,15 @@ begin
   SendFilterDefParams;
   if FSearchDlg.Execute('', FAutoSearchNumber) then
   begin
-    Application.ProcessMessages;
+    //Application.ProcessMessages;
     if FSearchDlg.Selected then
     begin
+
       if (TwwDBComboDlg(Sender).DataSource <> nil) AND
          (TwwDBComboDlg(Sender).DataSource.DataSet <> nil) then
       begin
         Dataset := TwwDBComboDlg(Sender).DataSource.Dataset;
-        Dataset.DisableControls;
+        //Dataset.DisableControls;
         Dataset.Edit;
         if ReturnField <> '' then
         begin
@@ -130,7 +133,7 @@ begin
         end;
         { TODO : Verificar a necessidade do método  RefreshCalcFields }
         //TClientDataset(Dataset).RefreshCalcFields;
-        Dataset.EnableControls;
+        //Dataset.EnableControls;
       end
       else
       begin
@@ -138,10 +141,11 @@ begin
           FReturnLookupField := FReturnField;
         FReturnedValue := FSearchDlg.GetFieldValue(FReturnLookupField);
         Text := FSearchDlg.GetFieldValue(FReturnTextField);
-        Modified := false;
       end;
+      Modified := false;
       if Assigned(FOnReturnSearch) then
         FOnReturnSearch(Self, FSearchDlg.FilterDataset);
+      Modified := false;
     end;
   end
   else
@@ -150,12 +154,14 @@ begin
     if Assigned(FOnCancelSearch) then
       FOnCancelSearch(Self, FSearchDlg.FilterDataset);
   end;
+  Modified := false;Modified := false;Modified := false;
 end;
 
 procedure TosComboSearch.HandlerExit(Sender: TObject);
 var
   Dataset: TDataset;
-begin
+
+  begin
   if (Modified) and (Trim(Text) <> '') then
   begin
     if FSearchDlg.Execute(TosComboSearch(Sender).Text, FAutoSearchNumber) then
@@ -171,7 +177,7 @@ begin
         //nó do dataInspector
         if (parent is TwwDataInspector) then
           TwwDataInspector(parent).GetItemByRow(TwwDataInspector(parent).Row).EditText := text;
-        Modified := false;
+
         if (TwwDBComboDlg(Sender).DataSource <> nil)
            AND (TwwDBComboDlg(Sender).DataSource.DataSet <> nil) then
         begin
@@ -183,6 +189,7 @@ begin
               Dataset.FieldByName(ReturnField).Value := FReturnedValue;
           //TPersistClientDS(Dataset).RefreshCalcFields;
           Dataset.EnableControls;
+          Modified := false;
         end;
         if Assigned(FOnReturnSearch) then
           FOnReturnSearch(Self, FSearchDlg.FilterDataset);

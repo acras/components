@@ -188,7 +188,7 @@ begin
         raise Exception.Create('Não conseguiu obter o ID do server para inclusão');
       FIDHighValue := v; // por convenção
       FIDLowValue := 0;
-    end;
+    end;                        
     Result := FIDHighValue * 10 + FIDLowValue;
     Inc(FIDLowValue);
   end;

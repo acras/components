@@ -35,7 +35,8 @@ requires
   dsnapcon,
   rtl,
   dbexpress,
-  osServer;
+  osServer,
+  acControls;
 
 contains
   osUtils in 'osUtils.pas',

@@ -319,7 +319,7 @@ begin
   if POrder.Count > 0 then
     CreateOrder(POrder);
   if DataInspector.Items.Count > 0 then
-    ShowModal
+    ShowModal                                    
   else
     ModalResult := mrOK;
   Result := (ModalResult = mrOK);
