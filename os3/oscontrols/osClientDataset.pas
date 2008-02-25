@@ -350,7 +350,7 @@ end;
 procedure TosClientDataset.OpenCursor(InfoQuery: Boolean);
 begin
   inherited OpenCursor(InfoQuery);
-  if not InfoQuery then
+   if not InfoQuery then
     GetIDField;
 end;
 
