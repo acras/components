@@ -28,6 +28,8 @@ type
     FOrderList: TStrings;
     FQueryText: TStrings;
     FNumber: integer;
+    FOrderColumn: string;
+    FOrderType: string;
   public
     constructor Create;
     destructor Destroy; override;
@@ -37,6 +39,8 @@ type
     property OrderList: TStrings read FOrderList write FOrderList;
     property QueryText: TStrings read FQueryText write FQueryText;
     property Number: integer read FNumber write FNumber;
+    property OrderColumn: string read FOrderColumn write FOrderColumn;
+    property OrderType: string read FOrderType write FOrderType;
   end;
 
   TosComboFilter = class(TwwDBComboBox)
@@ -63,6 +67,8 @@ type
     FLastOrder: string;
     FClientDS: TClientDataset;
     FSQLConnection: TosSQLConnection;
+    FOrderColumn: string;
+    FOrderType: string;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure CheckDS;
@@ -146,6 +152,8 @@ begin
       FClientDS.Close;
       iIndex := Items.IndexOf(Text);
 
+      FOrderColumn := TViewDef(Items.Objects[iIndex]).OrderColumn;
+      FOrderType := TViewDef(Items.Objects[iIndex]).OrderType;
       //se a pesquisa for comum pelo filtro
       if (trim(TViewDef(Items.Objects[iIndex]).queryText.text)='') OR (trim(TViewDef(Items.Objects[iIndex]).queryText.text)[1] <> 'T') then
       begin
@@ -358,7 +366,6 @@ begin
     if PClassName = '' then
       PClassName := FFilterDefName;
     CheckDS;
-    //TTMCI
 
     vViews :=  TacFilterController(
                   Application.MainForm.FindComponent('FFilterDepot')
@@ -390,6 +397,8 @@ begin
       ViewDef.ConstrList.Text := vViews[i][4];
       ViewDef.OrderList.Text := vViews[i][5];
       ViewDef.Number := StrToIntDef(vViews[i][6], 0);
+      ViewDef.OrderColumn := vViews[i][7];
+      ViewDef.OrderType := vViews[i][8];
       if ViewDef.Number <> -1 then // View -1 somente utilizada para definições básicas
       begin
         Items.AddObject(vViews[i][0], ViewDef);

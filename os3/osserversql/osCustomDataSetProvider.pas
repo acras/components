@@ -128,7 +128,9 @@ begin
       Add('  D.ExpressionList,');
       Add('  D.ConstraintList,');
       Add('  D.OrderList,');
-      Add('  D.QueryText');
+      Add('  D.QueryText,');
+      Add('  D.OrderColumn,');
+      Add('  D.OrderType');
       Add('FROM XFilterDef F, XFilterDefDetail D');
       Add('WHERE');
       Add('  F.IDXFilterDef = D.IDXFilterDef and');
@@ -157,7 +159,9 @@ begin
                                  FieldByName('ExpressionList').AsString,
                                  FieldByName('ConstraintList').AsString,
                                  FieldByName('OrderList').AsString,
-                                 FieldByName('Number').AsString]);
+                                 FieldByName('Number').AsString,
+                                 FieldByName('OrderColumn').AsString,
+                                 FieldByName('OrderType').AsString]);
         Inc(i);
         Next;
       end;
