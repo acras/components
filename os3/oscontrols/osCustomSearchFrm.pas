@@ -941,6 +941,10 @@ begin
         else
         if InspItem.CustomControl is TwwCheckBox then
         begin
+          if TwwCheckBox(InspItem.CustomControl).checked then
+            restricao.Texto := 'S'
+          else
+            restricao.Texto := 'N';
           //se possui as duas sentenças usa a mais adequada
           if pos('~',InspItem.TagString)<>0 then
           begin
