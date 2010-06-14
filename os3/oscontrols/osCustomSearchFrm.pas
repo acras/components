@@ -102,6 +102,7 @@ type
     procedure MostrarAviso(tipo: TTipoAviso);
   public
     sqlResult: TStringList;
+    RuntimeFilter: string;
     constructor Create(AOwner: TComponent); override;
     function Execute(const PValue: string;
   const PAutoSearchNumber: integer; tipo: TTipoOperacao = toMostrarResultado): boolean;
@@ -205,6 +206,7 @@ var
   slConstr: TStrings;
   sNome: String;
   naoAchou: boolean;
+  viewDef: TViewDef;
 begin
   Self.tipo := tipo;
   //Ajustes visuais conforme o tipo
@@ -216,7 +218,19 @@ begin
   constraintID := 0;
   FexecuteFilter := true;
   if ConsultaCombo.Items.Count = 0 then
+  begin
     ConsultaCombo.GetViews;
+    if RuntimeFilter <> '' then
+    begin
+      for i := 0 to ConsultaCombo.Items.Count - 1 do
+      begin
+        viewDef := TViewDef(ConsultaCombo.Items.Objects[i]);
+        if viewDef.ExprList.Text <> '' then
+          viewDef.ExprList.Add(RuntimeFilter);
+      end;
+    end;
+  end;
+
   bShow := True;
   if PValue <> '' then
   begin

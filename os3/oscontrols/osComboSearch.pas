@@ -39,6 +39,7 @@ type
     FReturnLookupField: string;
     FOnCancelSearch: TReturnSearchEvent;
     FReturnTextField: string;
+    FRuntimeFilter: string;
     function GetFilterDefName: string;
     procedure SetReturnField(const Value: string);
     procedure SetFilterDefName(const Value: string);
@@ -59,6 +60,7 @@ type
     destructor Destroy; override;
     property ReturnedValue: variant read FReturnedValue;
     property isModified: Boolean read getModified;
+    property RuntimeFilter: string read FRuntimeFilter write FRuntimeFilter;
     procedure ClearFilter;
     procedure Execute;
   published
@@ -111,6 +113,7 @@ procedure TosComboSearch.HandlerCustomDlg(Sender: TObject);
 var
   Dataset: TDataset;
 begin
+  FSearchDlg.RuntimeFilter := RuntimeFilter;
   SendFilterDefParams;
   if FSearchDlg.Execute('', FAutoSearchNumber) then
   begin
@@ -162,6 +165,7 @@ var
   Dataset: TDataset;
 
   begin
+  FSearchDlg.RuntimeFilter := RuntimeFilter;
   if (Modified) and (Trim(Text) <> '') then
   begin
     if FSearchDlg.Execute(TosComboSearch(Sender).Text, FAutoSearchNumber) then
