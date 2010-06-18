@@ -36,7 +36,8 @@ requires
   rtl,
   dbexpress,
   osServer,
-  acControls;
+  acControls,
+  dbrtl;
 
 contains
   osUtils in 'osUtils.pas',
@@ -51,7 +52,7 @@ contains
   osCustomSearchFrm in 'osCustomSearchFrm.pas' {CustomSearchForm},
   osFilterInspectorFrame in 'osFilterInspectorFrame.pas' {FilterInspectorFrame: TFrame},
   osRadioComboPanel in 'osRadioComboPanel.pas',
-  osCustomFilterUn in '..\..\..\clientes\FW\Forms\osCustomFilterUn.pas' {osCustomFilter},
-  osCustomFilterFunctionUn in '..\..\..\clientes\FW\Lib\osCustomFilterFunctionUn.pas';
+  osCustomFilterUn in '..\..\..\FW\Forms\osCustomFilterUn.pas' {osCustomFilter},
+  osCustomFilterFunctionUn in '..\..\..\FW\Lib\osCustomFilterFunctionUn.pas';
 
 end.

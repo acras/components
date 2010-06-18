@@ -16,8 +16,8 @@ object osFilterInspector: TosFilterInspector
   OldCreateOrder = False
   Position = poMainFormCenter
   DesignSize = (
-    287
-    209)
+    279
+    200)
   PixelsPerInch = 96
   TextHeight = 13
   object DataInspector: TwwDataInspector

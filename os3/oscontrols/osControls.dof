@@ -94,7 +94,7 @@ OutputDir=
 UnitOutputDir=.
 PackageDLLOutputDir=$(Delphi)\Projects\Bpl
 PackageDCPOutputDir=.
-SearchPath=..\..\..\clientes\FW\Forms
+SearchPath=P:\FW\Forms;P:\FW
 Packages=Vcl50;Vclx50;VclSmp50;Vcldb50;vclado50;ibevnt50;Vclbde50;vcldbx50;Qrpt50;TeeUI50;TeeDB50;Tee50;Dss50;TeeQR50;VCLIB50;Vclmid50;vclie50;Inetdb50;Inet50;NMFast50;webmid50;dclocx50;dclaxserver50;ip50client_d5;ip50_d5;ip50word_d5;rbTDBC51;rbRCL55;rbCIDE55;rbIDE55;rbBDE55;rbRIDE55;rbRAP55;rbDBDE55;rbDAD55;rbDIDE55;rbUSER55;rbDB55;rbADO55;rbIBE55;RxCtl5;RxDB5;CCLib;RadTools;RadFilters;RadControls;RxBDE5
 Conditionals=
 DebugSourceDirs=
@@ -135,13 +135,15 @@ ProductName=
 ProductVersion=1.0.0.0
 Comments=
 [Excluded Packages]
-C:\WINDOWS\system32\rbIBE97.bpl=ReportBuilder Data Access for Interbase Express
+C:\Windows\system32\rbIBE107.bpl=ReportBuilder Data Access for Interbase Express
 [HistoryLists\hlUnitAliases]
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
 [HistoryLists\hlSearchPath]
-Count=1
-Item0=..\..\..\clientes\FW\Forms
+Count=3
+Item0=P:\FW\Forms;P:\FW
+Item1=..\..\..\clientes\FW\Forms;P:\FW
+Item2=..\..\..\clientes\FW\Forms
 [HistoryLists\hlUnitOutputDirectory]
 Count=1
 Item0=.
