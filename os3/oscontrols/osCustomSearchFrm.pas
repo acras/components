@@ -488,6 +488,7 @@ begin
         end;
         if (slOrder.Count > 0) AND (UpperCase(slOrder[0])<>'FALSE') then
           CreateOrder(slOrder);
+        FilterInspectorFrame.DataInspector.Repaint;
       end //if PNewFilter
     end;//if Text <> ''
   end;//with comboFilter do
