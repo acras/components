@@ -248,27 +248,30 @@ begin
       if Items.Count = 0 then
         raise Exception.Create('Não há filtros na lista');
       CheckDS;
-      FClientDS.CommandText := getSQLFilter(iIndex, PNewFilter);
-      result := FClientDS.CommandText;
-      FClientDS.DisableControls;
-      try
-        FClientDS.Open;
-      except
-        on e: exception do
-        begin
-          if ItemIndex<>0 then
-            MessageDlg('Ocorreram erros na execução do Filtro. '+#13+#10'O filtro padrão será executado novamente.'+#13+#10+'Erro com a mensagem:'+e.Message, mtError, [mbOK], 0)
-          else
-            MessageDlg('Ocorreram erros na execução do Filtro.'+#13+#10+'Erro com a mensagem:'+e.Message, mtError, [mbOK], 0);
-          if ItemIndex<>0 then
+      result := getSQLFilter(iIndex, PNewFilter);
+      if result <> '' then
+      begin
+        FClientDS.CommandText := result;
+        FClientDS.DisableControls;
+        try
+          FClientDS.Open;
+        except
+          on e: exception do
           begin
-            ItemIndex := 0;
-            ExecuteFilter(true);
+            if ItemIndex<>0 then
+              MessageDlg('Ocorreram erros na execução do Filtro. '+#13+#10'O filtro padrão será executado novamente.'+#13+#10+'Erro com a mensagem:'+e.Message, mtError, [mbOK], 0)
+            else
+              MessageDlg('Ocorreram erros na execução do Filtro.'+#13+#10+'Erro com a mensagem:'+e.Message, mtError, [mbOK], 0);
+            if ItemIndex<>0 then
+            begin
+              ItemIndex := 0;
+              ExecuteFilter(true);
+            end;
           end;
         end;
+        ConfigFields(iIndex);
+        FClientDS.EnableControls;
       end;
-      ConfigFields(iIndex);
-      FClientDS.EnableControls;
     except
 //      on EDatabaseError do
       begin
