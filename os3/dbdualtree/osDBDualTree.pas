@@ -43,6 +43,7 @@ type
     FSourceDescFieldNames: TStrings;
 
     FOnNodeSelect: TNodeSelectEvent;
+    FOnLeftNodeSelect: TNodeSelectEvent;
 
 { TODO : Encontrar um modo mais elegante de impedir que o evento OnNodeSelect
   seja disparado durante o método Clear }
@@ -71,6 +72,11 @@ type
     procedure ToRightButtonClick(Sender: TObject);
 
     procedure RightTreeChange(Sender: TObject; Node: TTreeNode);
+    procedure LeftTreeChange(Sender: TObject; Node: TTreeNode);
+
+    procedure RightTreeEnter(Sender: TObject);
+    procedure LeftTreeEnter(Sender: TObject);
+
 
     procedure ResizeComponents;
     function GetAssociationCaption: string;
@@ -86,6 +92,7 @@ type
     procedure Loaded; override;
 
     procedure DoNodeSelect(LeafSelected: boolean);
+    procedure DoLeftNodeSelect(LeafSelected: boolean);
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -113,6 +120,8 @@ type
 
     property OnNodeSelect: TNodeSelectEvent
         read FOnNodeSelect write FOnNodeSelect;
+    property OnLeftNodeSelect: TNodeSelectEvent
+        read FOnLeftNodeSelect write FOnLeftNodeSelect;
 
     property AssociationCaption: string
         read GetAssociationCaption write SetAssociationCaption;
@@ -270,6 +279,8 @@ begin
   FLeftTree.Parent := Self;
   FLeftTree.HideSelection := False;
   FLeftTree.SortType := stText;
+  FLeftTree.OnChange := LeftTreeChange;
+  FLeftTree.OnEnter := LeftTreeEnter;
 
   FRightTree := TTreeView.Create(Self);
   FRightTree.Top := 16;
@@ -282,6 +293,7 @@ begin
   FRightTree.OnChange := RightTreeChange;
   FRightTree.HideSelection := False;
   FRightTree.SortType := stText;
+  FRightTree.OnEnter := RightTreeEnter;
 
   FToLeftButton := TButton.Create(Self);
   FToLeftButton.Caption := '<';
@@ -711,6 +723,46 @@ end;
 procedure TosDBDualTree.ToRightButtonClick(Sender: TObject);
 begin
   MoveSelectedNodes(FLeftTree, FRightTree);
+end;
+
+procedure TosDBDualTree.DoLeftNodeSelect(LeafSelected: boolean);
+begin
+  if Assigned(FOnLeftNodeSelect) then
+    FOnLeftNodeSelect(LeafSelected);
+end;
+
+procedure TosDBDualTree.LeftTreeChange(Sender: TObject; Node: TTreeNode);
+begin
+  if not FClearing then
+  begin
+    if Node.Level = FLevelCount - 1 then
+    begin
+      FSourceDataSet.First;
+
+      Assert(FSourceDataSet.Locate(FSourceFieldName,
+          VarArrayOf([TVariantRef(Node.Data).Value]), []), 'Could not locate the '
+          + 'corresponding field in the dataset. Maybe the dataset has changed '
+          + 'while it was been edited by the control');
+
+      FSourceDataSet.Locate(FSourceFieldName,
+          VarArrayOf([TVariantRef(Node.Data).Value]), []);
+      DoLeftNodeSelect(True);
+    end
+    else
+      DoLeftNodeSelect(False);
+  end;
+end;
+
+procedure TosDBDualTree.LeftTreeEnter(Sender: TObject);
+begin
+  if Assigned(FLeftTree.Selected) then
+    LeftTreeChange(FLeftTree, FLeftTree.Selected);
+end;
+
+procedure TosDBDualTree.RightTreeEnter(Sender: TObject);
+begin
+  if Assigned(FRightTree.Selected) then
+    RightTreeChange(FRightTree, FRightTree.Selected);
 end;
 
 end.
