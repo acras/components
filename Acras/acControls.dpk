@@ -22,6 +22,7 @@ package acControls;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
+{$DESCRIPTION 'acControls'}
 {$IMPLICITBUILD OFF}
 
 requires
@@ -32,6 +33,7 @@ contains
   acCollapsePanel in 'acCollapsePanel.pas',
   acRadioComboPanel in 'acRadioComboPanel.pas',
   acTrayIcon in 'acTrayIcon.pas',
-  acFilterController in 'acFilterController.pas';
+  acFilterController in 'acFilterController.pas',
+  acReportContainer in 'acReportContainer.pas';
 
 end.
