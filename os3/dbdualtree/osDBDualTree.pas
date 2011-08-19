@@ -737,16 +737,19 @@ begin
   begin
     if Node.Level = FLevelCount - 1 then
     begin
-      FSourceDataSet.First;
+      if FSourceDataSet.Active then
+      begin
+        FSourceDataSet.First;
 
-      Assert(FSourceDataSet.Locate(FSourceFieldName,
-          VarArrayOf([TVariantRef(Node.Data).Value]), []), 'Could not locate the '
-          + 'corresponding field in the dataset. Maybe the dataset has changed '
-          + 'while it was been edited by the control');
+        Assert(FSourceDataSet.Locate(FSourceFieldName,
+            VarArrayOf([TVariantRef(Node.Data).Value]), []), 'Could not locate the '
+            + 'corresponding field in the dataset. Maybe the dataset has changed '
+            + 'while it was been edited by the control');
 
-      FSourceDataSet.Locate(FSourceFieldName,
-          VarArrayOf([TVariantRef(Node.Data).Value]), []);
-      DoLeftNodeSelect(True);
+        FSourceDataSet.Locate(FSourceFieldName,
+            VarArrayOf([TVariantRef(Node.Data).Value]), []);
+        DoLeftNodeSelect(True);
+      end;
     end
     else
       DoLeftNodeSelect(False);
