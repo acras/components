@@ -49,20 +49,21 @@ type
     procedure SetFilterDataProvider(const Value: TCustomProvider);
     function GetFilterDataProvider: TCustomProvider;
     function getModified: Boolean;
+    procedure SetSearchDlg(const Value: TCustomSearchForm);
   protected
-
     procedure Loaded; override;
     procedure KeyUp(var Key: Word; Shift: TShiftState); override;
     procedure SendFilterDefParams;
-    procedure GetParamsHandler(Sender: TObject);
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     property ReturnedValue: variant read FReturnedValue;
     property isModified: Boolean read getModified;
     property RuntimeFilter: string read FRuntimeFilter write FRuntimeFilter;
+    property SearchDlg: TCustomSearchForm read FSearchDlg write SetSearchDlg;
     procedure ClearFilter;
     procedure Execute;
+    procedure GetParamsHandler(Sender: TObject);    
   published
     property FilterDataProvider : TCustomProvider read GetFilterDataProvider write SetFilterDataProvider;
     property FilterDefName: string read GetFilterDefName write SetFilterDefName;
@@ -324,6 +325,20 @@ begin
   HandlerCustomDlg(self);
 end;
 
+
+procedure TosComboSearch.SetSearchDlg(const Value: TCustomSearchForm);
+var
+  prov: TCustomProvider;
+  defName: string;
+begin
+  prov := FilterDataProvider;
+  FSearchDlg := Value;
+  FilterDataProvider := prov;
+  FSearchDlg.ConsultaCombo.GetParams := GetParamsHandler;
+  defName := FilterDefName;
+  FilterDefName := '';
+  FilterDefName := defName;
+end;
 
 end.
 
