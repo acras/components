@@ -95,7 +95,6 @@ type
     procedure DateListItemChanged(Sender: TwwDataInspector;
       Item: TwwInspectorItem; NewValue: String);
     function LastDayMonth(PDate: TDatetime): TDatetime;
-    function GetExpressions: string;
     function GetOrder: string;
     function SQLDateFromStr(PStr: string): string;
     procedure ReplaceSpecialChars(var PStr: string);
@@ -109,6 +108,7 @@ type
     function GetFieldValue(const PFieldName: string): variant;
     procedure ClearFilter;
     procedure getUserFills(fills: TStringList);
+    function GetExpressions: string;    
   published
     property DataProvider : TCustomProvider read GetDataProvider write SetDataProvider;
     property FilterDefName: string read GetFilterDefName write SetFilterDefName;
