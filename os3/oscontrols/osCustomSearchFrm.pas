@@ -217,6 +217,7 @@ begin
   end;
   constraintID := 0;
   FexecuteFilter := true;
+  
   if ConsultaCombo.Items.Count = 0 then
   begin
     ConsultaCombo.GetViews;
@@ -226,7 +227,9 @@ begin
       begin
         viewDef := TViewDef(ConsultaCombo.Items.Objects[i]);
         if viewDef.ExprList.Text <> '' then
-          viewDef.ExprList.Add(RuntimeFilter);
+          viewDef.ExprList.Add(RuntimeFilter)
+        else
+          viewDef.ExprList.Add('1=1 '+RuntimeFilter);
       end;
     end;
   end;
