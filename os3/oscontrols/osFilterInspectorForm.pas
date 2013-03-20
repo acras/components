@@ -21,6 +21,8 @@ type
     DataInspector: TwwDataInspector;
     btnOK: TButton;
     btnCancela: TButton;
+    Label1: TLabel;
+    procedure btnOKClick(Sender: TObject);
   private
     function LastDayMonth(PDate: TDatetime): TDatetime;
     function SQLDateFromStr(PStr: string): string;
@@ -84,6 +86,7 @@ begin
 
   {
   Formato:
+  Nome;Expressao
   Nome;Expressão;Date
   Nome;Expressão;List;cod1,descr1,cod2,descr2,...
   Nome;Expressão;Dategroup;expr1 | expr2
@@ -486,6 +489,42 @@ function TosFilterInspector.SQLDateFromStr(PStr: string): string;
 begin
 //  Result := FormatDatetime('yyyymmdd', StrToDate(PStr));
   Result := FormatDatetime('yyyy/mm/dd', StrToDate(PStr));
+end;
+
+procedure TosFilterInspector.btnOKClick(Sender: TObject);
+var
+  i, j: Integer;
+  InspItem, InspChild: TwwInspectorItem;
+begin
+  for i:=0 to DataInspector.Items.Count-1 do
+  begin
+    InspItem := DataInspector.Items[i];
+    if (InspItem.Caption[Length(InspItem.Caption)] = '*') and
+       (not (InspItem.CustomControl is TwwCheckBox)) then
+    begin
+      if InspItem.Items.Count > 0 then
+      begin
+        for j := 0 to InspItem.Items.Count - 1 do
+        begin
+          InspChild := InspItem.Items[j];
+          if Trim(InspChild.EditText) = '' then
+          begin
+            ShowMessage('Preencha as informações obrigatórias.');
+            Abort;
+          end;
+        end;
+      end
+      else
+      begin
+        if Trim(InspItem.EditText) = '' then
+        begin
+          ShowMessage('Preencha as informações obrigatórias.');
+          Abort;
+        end;
+      end;
+    end;
+  end;
+  ModalResult := mrOk;
 end;
 
 end.

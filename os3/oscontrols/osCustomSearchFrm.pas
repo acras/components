@@ -99,6 +99,7 @@ type
     function SQLDateFromStr(PStr: string): string;
     procedure ReplaceSpecialChars(var PStr: string);
     procedure MostrarAviso(tipo: TTipoAviso);
+    function CamposObrigatoriosPreenchidos(): Boolean;
   public
     sqlResult: TStringList;
     RuntimeFilter: string;
@@ -898,6 +899,12 @@ var
   listaRestricoesPreenchidas: TList;
   restricao, restricaoChild: TRestricaoUsuario;
 begin
+  if not CamposObrigatoriosPreenchidos then
+  begin
+    ShowMessage('Preencha as informações obrigatórias.');
+    Abort;
+  end;
+
   listaRestricoesPreenchidas := TList.Create;
 
   Result := '';
@@ -1092,5 +1099,34 @@ begin
   fills.clear;
 end;
 
+function TCustomSearchForm.CamposObrigatoriosPreenchidos: Boolean;
+var
+  i, j: Integer;
+  InspItem, InspChild: TwwInspectorItem;
+begin
+  Result := True;
+  for i:=0 to FilterinspectorFrame.DataInspector.Items.Count-1 do
+  begin
+    InspItem := FilterinspectorFrame.DataInspector.Items[i];
+    if (InspItem.Caption[Length(InspItem.Caption)] = '*') and
+       (not (InspItem.CustomControl is TwwCheckBox)) then
+    begin
+      if InspItem.Items.Count > 0 then
+      begin
+        for j := 0 to InspItem.Items.Count - 1 do
+        begin
+          InspChild := InspItem.Items[j];
+          if Trim(InspChild.EditText) = '' then
+            Result := False;
+        end;
+      end
+      else
+      begin
+        if Trim(InspItem.EditText) = '' then
+          Result := False;
+      end;
+    end;
+  end;
+end;
 
 end.

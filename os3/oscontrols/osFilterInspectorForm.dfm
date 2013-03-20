@@ -1,8 +1,8 @@
 object osFilterInspector: TosFilterInspector
   Left = 345
   Top = 197
-  Width = 303
-  Height = 244
+  Width = 411
+  Height = 380
   BorderIcons = []
   BorderStyle = bsSizeToolWin
   BorderWidth = 4
@@ -16,21 +16,28 @@ object osFilterInspector: TosFilterInspector
   OldCreateOrder = False
   Position = poMainFormCenter
   DesignSize = (
-    279
-    200)
+    395
+    345)
   PixelsPerInch = 96
   TextHeight = 13
+  object Label1: TLabel
+    Left = 0
+    Top = 317
+    Width = 102
+    Height = 13
+    Caption = '* Campos obrigat'#243'rios'
+  end
   object DataInspector: TwwDataInspector
     Left = 0
     Top = 4
-    Width = 287
-    Height = 171
+    Width = 395
+    Height = 310
     DisableThemes = False
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
     Items = <>
     DefaultRowHeight = 18
-    CaptionWidth = 103
+    CaptionWidth = 187
     Options = [ovColumnResize, ovRowResize, ovEnterToTab, ovHighlightActiveRow, ovCenterCaptionVert]
     CaptionFont.Charset = DEFAULT_CHARSET
     CaptionFont.Color = clWindowText
@@ -41,19 +48,19 @@ object osFilterInspector: TosFilterInspector
     LineStyleData = ovLight3DLine
   end
   object btnOK: TButton
-    Left = 130
-    Top = 177
+    Left = 238
+    Top = 320
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'OK'
     Default = True
-    ModalResult = 1
     TabOrder = 1
+    OnClick = btnOKClick
   end
   object btnCancela: TButton
-    Left = 212
-    Top = 177
+    Left = 320
+    Top = 320
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
