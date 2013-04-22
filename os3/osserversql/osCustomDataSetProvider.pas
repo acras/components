@@ -97,21 +97,24 @@ begin
   DS := nil;
 
   sqlQ := TosSQLQuery.Create(nil);
-  sqlQ.SQLConnection := TosSQLDataSet(self.DataSet).SQLConnection;
-  sqlq.SQL.Assign(sql);
-  sqlq.Open;
-  //IProviderSupport(Self.DataSet).PSExecuteStatement(SQL.Text, Params, @DS);
+  try
+    sqlQ.SQLConnection := TosSQLDataSet(self.DataSet).SQLConnection;
+    sqlq.SQL.Assign(sql);
+    sqlq.Open;
 
-  if sqlQ.RecordCount > 0 then
-  begin
-    TempProvider := TDataSetProvider.Create(Self);
-    Try
-      TempProvider.DataSet := sqlQ;
-      Dataset.Data := TempProvider.Data;
-    finally
-      TempProvider.Free;
-      DS.Free;
+    if sqlQ.RecordCount > 0 then
+    begin
+      TempProvider := TDataSetProvider.Create(Self);
+      Try
+        TempProvider.DataSet := sqlQ;
+        Dataset.Data := TempProvider.Data;
+      finally
+        TempProvider.Free;
+        DS.Free;
+      end;
     end;
+  finally
+    FreeAndNil(sqlq);
   end;
 end;
 
