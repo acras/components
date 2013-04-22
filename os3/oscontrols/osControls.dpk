@@ -1,6 +1,7 @@
 package osControls;
 
 {$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS OFF}
 {$BOOLEVAL OFF}
@@ -11,17 +12,19 @@ package osControls;
 {$LOCALSYMBOLS OFF}
 {$LONGSTRINGS ON}
 {$OPENSTRINGS ON}
-{$OPTIMIZATION ON}
+{$OPTIMIZATION OFF}
 {$OVERFLOWCHECKS OFF}
 {$RANGECHECKS OFF}
 {$REFERENCEINFO OFF}
 {$SAFEDIVIDE OFF}
-{$STACKFRAMES OFF}
+{$STACKFRAMES ON}
 {$TYPEDADDRESS OFF}
 {$VARSTRINGCHECKS ON}
 {$WRITEABLECONST ON}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'OS Controls'}
 {$IMPLICITBUILD OFF}
 
@@ -31,13 +34,14 @@ requires
   dsnap,
   vcldb,
   bdertl,
-  ip4000v7,
   dsnapcon,
   rtl,
   dbexpress,
   osServer,
   acControls,
-  dbrtl;
+  dbrtl,
+  vclactnband,
+  ipstudiowin;
 
 contains
   osUtils in 'osUtils.pas',
@@ -52,7 +56,7 @@ contains
   osCustomSearchFrm in 'osCustomSearchFrm.pas' {CustomSearchForm},
   osFilterInspectorFrame in 'osFilterInspectorFrame.pas' {FilterInspectorFrame: TFrame},
   osRadioComboPanel in 'osRadioComboPanel.pas',
-  osCustomFilterUn in '..\..\..\FW\Forms\osCustomFilterUn.pas' {osCustomFilter},
-  osCustomFilterFunctionUn in '..\..\..\FW\Lib\osCustomFilterFunctionUn.pas';
+  osCustomFilterUn in 'F:\FW\Forms\osCustomFilterUn.pas' {osCustomFilter},
+  osCustomFilterFunctionUn in 'F:\FW\Lib\osCustomFilterFunctionUn.pas';
 
 end.

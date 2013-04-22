@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Provider, db, dbclient, variants;
+  Provider, db, dbclient, variants, osSQLQuery, osSQLDataSet;
 
 type
 
@@ -91,15 +91,22 @@ procedure TosCustomDatasetProvider.DoGetValues(SQL: TStringList; Params: TParams
   DataSet: TPacketDataSet);
 var
   DS: TDataSet;
+  sqlQ: TosSQLQuery;
   TempProvider: TDatasetProvider;
 begin
   DS := nil;
-  IProviderSupport(Self.DataSet).PSExecuteStatement(SQL.Text, Params, @DS);
-  if Assigned(DS) then
+
+  sqlQ := TosSQLQuery.Create(nil);
+  sqlQ.SQLConnection := TosSQLDataSet(self.DataSet).SQLConnection;
+  sqlq.SQL.Assign(sql);
+  sqlq.Open;
+  //IProviderSupport(Self.DataSet).PSExecuteStatement(SQL.Text, Params, @DS);
+
+  if sqlQ.RecordCount > 0 then
   begin
     TempProvider := TDataSetProvider.Create(Self);
     Try
-      TempProvider.DataSet := DS;
+      TempProvider.DataSet := sqlQ;
       Dataset.Data := TempProvider.Data;
     finally
       TempProvider.Free;
@@ -121,22 +128,22 @@ begin
   try
     with SQL do
     begin
-      Add('SELECT');
-      Add('  D.Number,');
-      Add('  D.Description,');
-      Add('  D.AttributeList,');
-      Add('  D.ExpressionList,');
-      Add('  D.ConstraintList,');
-      Add('  D.OrderList,');
-      Add('  D.QueryText,');
-      Add('  D.OrderColumn,');
-      Add('  D.OrderType');
-      Add('FROM XFilterDef F, XFilterDefDetail D');
-      Add('WHERE');
-      Add('  F.IDXFilterDef = D.IDXFilterDef and');
-      Add('  F.Name = ' + QuotedStr(PName));
-      Add('ORDER BY');
-      Add('  D.Number');
+      Add(' SELECT');
+      Add('   D.Number,');
+      Add('   D.Description,');
+      Add('   D.AttributeList,');
+      Add('   D.ExpressionList,');
+      Add('   D.ConstraintList,');
+      Add('   D.OrderList,');
+      Add('   D.QueryText,');
+      Add('   D.OrderColumn,');
+      Add('   D.OrderType');
+      Add(' FROM XFilterDef F, XFilterDefDetail D');
+      Add(' WHERE');
+      Add('   F.IDXFilterDef = D.IDXFilterDef and');
+      Add('   F.Name = ' + QuotedStr(PName));
+      Add(' ORDER BY');
+      Add('   D.Number');
     end;
 
     DoGetValues(SQL, Params, ViewsDataset);
